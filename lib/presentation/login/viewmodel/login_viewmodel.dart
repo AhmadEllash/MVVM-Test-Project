@@ -10,14 +10,15 @@ class LoginBaseViewModel extends BaseViewModel with LoginViewModelInputs , Login
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _checkAllInputStreamController = StreamController<void>.broadcast();
 
-  // final LoginUseCase _loginUseCase;
-// LoginBaseViewModel(this._loginUseCase);
-  LoginBaseViewModel();
+  final LoginUseCase _loginUseCase;
+LoginBaseViewModel(this._loginUseCase);
+  // LoginBaseViewModel();
 
   @override
   void dispose() {
 _userStreamController.close();
 _passwordStreamController.close();
+_checkAllInputStreamController.close();
   }
 
   @override

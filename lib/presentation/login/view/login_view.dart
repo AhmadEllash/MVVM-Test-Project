@@ -1,8 +1,10 @@
+import 'package:advanced_flutter/app/denpendeny_injection.dart';
 import 'package:advanced_flutter/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:advanced_flutter/presentation/resources/assets_manager.dart';
 import 'package:advanced_flutter/presentation/resources/strings_manager.dart';
 import 'package:advanced_flutter/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   // final LoginBaseViewModel _viewModel = LoginBaseViewModel(_loginUseCase);
-  final LoginBaseViewModel _viewModel = LoginBaseViewModel();
+  final LoginBaseViewModel _viewModel = instance<LoginBaseViewModel>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _userPasswordController = TextEditingController();
@@ -95,11 +97,11 @@ class _LoginViewState extends State<LoginView> {
                     stream: _viewModel.outIsInputAllValid,
                     builder: (context, snapshot) {
                       return ElevatedButton(
-                          onPressed: snapshot.data ?? true
-                              ? null
-                              : () {
+                          onPressed: (snapshot.data ?? false)
+
+                              ?() {
                                   _viewModel.login();
-                                },
+                                }  : null,
                           child: Text(
                             AppStrings.login,
                             style: Theme.of(context).textTheme.titleSmall,

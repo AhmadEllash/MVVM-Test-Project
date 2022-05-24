@@ -1,3 +1,4 @@
+import 'package:advanced_flutter/app/denpendeny_injection.dart';
 import 'package:advanced_flutter/presentation/forgot_password/forgot_password_screen.dart';
 import 'package:advanced_flutter/presentation/home/home_screen.dart';
 import 'package:advanced_flutter/presentation/login/view/login_view.dart';
@@ -31,6 +32,7 @@ class RoutesGenerator {
       case Routes.storeDetailsRoute:
       return MaterialPageRoute(builder: (_) => const StoreDetailsScreen());
       case Routes.loginRoute:
+        initLoginModule();
       return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.onBoardingRoute:
       return MaterialPageRoute(builder: (_) => const OnBoardingView());
